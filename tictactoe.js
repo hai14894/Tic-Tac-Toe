@@ -2,16 +2,23 @@
 function drawGrid(){
     let table = document.querySelector("#game")
     let counter = 1
+    let isXturn = true
     for(let i=0; i<3; i++){
         let row = document.createElement("tr")
 
         for(let x=0; x<3; x++){
             let col = document.createElement("td")
-            col.innerHTML = counter
+            col.id = counter
             counter++
             col.style.borderStyle = "solid"
             row.appendChild(col)
-
+            col.addEventListener("click", (e) =>{
+                if(e.target.innerText !== "X" && e.target.innerText !== "O"){
+                    e.target.innerText = isXturn ? "X" : "O"
+                    isXturn = !isXturn
+                }
+            
+            })
         }
         table.appendChild(row)
     }
